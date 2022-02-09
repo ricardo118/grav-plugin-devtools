@@ -1,4 +1,3 @@
-{% set extension = config.theme.production ? '.min' : '' %}
 <!DOCTYPE html>
 <html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
 <head>
@@ -15,10 +14,11 @@
     {% endblock head %}
 
     {% block stylesheets %}
-        {% do assets.addCss('theme://dist/css/app' ~ extension ~ '.css', 98) %}
+        {% do assets.addCss('theme://build/css/site.css', 98) %}
     {% endblock %}
 
     {% block javascripts %}
+        {% do assets.addJs('https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', {'loading': 'defer', 'priority': 99}) %}
     {% endblock %}
 
     {% block assets deferred %}
